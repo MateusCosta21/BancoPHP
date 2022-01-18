@@ -1,8 +1,19 @@
 <?php
 class Conta{
-    private $cpftitular;
-    private $nometitular;
+    private $titular;
     private $saldo = 0;
+    private static $numerodeContas = 0;
+
+    public function __construct(Titular $titular)
+    {
+        $this->titular = $titular;
+        $this-> saldo = 0;
+        self::$numerodeContas++;
+    }
+
+    public function __destruct(){
+        self::$numerodeContas--;
+    }
 
     public function sacar($valoraSacar) : void
     {
@@ -35,26 +46,23 @@ class Conta{
         return $this-> saldo;
     }
 
-    public function defineCpfTitular(string $cpf)
+    public function recuperaNomeTitular():string
     {
-        $this->cpftitular = $cpf;
+        return $this -> titular->recuperaNome();
     }
 
-    public function recuperarCpfTitular() : string
+    public function recuperaCpfTitular():string
     {
-        return $this->cpftitular;
+        return $this -> titular->recuperaCpf();
     }
 
-    public function defineNomeTitular(string $nome):void
-    {
-        $this->nometitular = $nome;
-    }
 
-    public function recuperarNomeTitular() : string
-    {
-        return $this->nometitular;
-    }
 
+
+    public static function recuperaNumerodeContas() :int
+    {
+        return self::$numerodeContas;
+    }
 
 
 
