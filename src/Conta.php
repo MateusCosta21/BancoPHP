@@ -1,8 +1,9 @@
 <?php
 class Conta{
-    public $cpftitular;
-    public $nometitular;
-    public $saldo;
+    private $cpftitular;
+    private $nometitular;
+    private $saldo = 0;
+
     public function sacar($valoraSacar) : void
     {
         if($valoraSacar > $this->saldo){
@@ -29,5 +30,34 @@ class Conta{
             $this->sacar($valorATransferir);
             $contaDestino -> depositar($valorATransferir);
     }
+    public function recuperaSaldo() : float
+    {
+        return $this-> saldo;
+    }
+
+    public function defineCpfTitular(string $cpf)
+    {
+        $this->cpftitular = $cpf;
+    }
+
+    public function recuperarCpfTitular() : string
+    {
+        return $this->cpftitular;
+    }
+
+    public function defineNomeTitular(string $nome):void
+    {
+        $this->nometitular = $nome;
+    }
+
+    public function recuperarNomeTitular() : string
+    {
+        return $this->nometitular;
+    }
+
+
+
+
+
 }
 
