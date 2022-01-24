@@ -1,17 +1,17 @@
 <?php
 
 require_once 'autoload.php';
-use Alura\Banco\Modelo\Conta\Conta;
-use Alura\Banco\Modelo\Conta\Titular;
-use Alura\Banco\Modelo\CPF;
-use Alura\Banco\Modelo\Endereco;
+use Alura\Banco\Modelo\Conta\{ContaPoupanca,ContaCorrente,Titular};
+use Alura\Banco\Modelo\{CPF,Endereco};
 
 
-$conta = new Conta(new Titular
+
+$conta = new ContaPoupanca(new Titular
             (new CPF('123.456.789-10'),
             'João Mateus da Costa Santos',
-            new Endereco('fortaleza','SAPIRANGA','A','444')
-        ));
+            new Endereco('fortaleza','SAPIRANGA','A','444'),
+        ),
+        );
 
 $conta -> deposita(500);
 $conta->saca(100);
